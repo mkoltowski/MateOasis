@@ -22,5 +22,17 @@
         "end_time": "2025-06-11T19:24:12.467405",
         "session_completed": false,
         "mindfulness_completed": false
+    },
+    {
+        "start_time": "2025-06-11T19:31:54.259031",
+        "end_time": "2025-06-11T19:31:55.867581",
+        "session_completed": false,
+        "mindfulness_completed": false
+    },
+    {
+        "start_time": "2025-06-11T19:31:59.274995",
+        "end_time": "2025-06-11T19:32:00.018602",
+        "session_completed": false,
+        "mindfulness_completed": false
     }
 ]

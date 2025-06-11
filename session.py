@@ -122,3 +122,35 @@ def log_session(start_time, end_time, session_completed, mindfulness_completed):
 
     with open(log_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
+
+def show_history_window(root):
+    history_window = tk.Toplevel(root)
+    history_window.title("Historia sesji")
+    history_window.geometry("500x300")
+
+    # Tytuł
+    title = tk.Label(history_window, text="Historia sesji", font=("Arial", 14, "bold"))
+    title.pack(pady=10)
+
+    # Lista
+    listbox = tk.Listbox(history_window, width=70)
+    listbox.pack(padx=10, pady=5, fill=tk.BOTH, expand=True)
+
+    log_path = os.path.join("data", "session_log.json")
+
+    if os.path.exists(log_path):
+        with open(log_path, "r", encoding="utf-8") as f:
+            try:
+                data = json.load(f)
+            except json.JSONDecodeError:
+                data = []
+
+        for entry in data:
+            start = entry.get("start_time", "brak")[:16].replace("T", " ")
+            session_ok = "✅" if entry.get("session_completed") else "❌"
+            breath_ok = "✅" if entry.get("mindfulness_completed") else "❌"
+
+            item = f"📅 {start} — Sesja: {session_ok}, Ćwiczenie: {breath_ok}"
+            listbox.insert(tk.END, item)
+    else:
+        listbox.insert(tk.END, "Brak danych do wyświetlenia.")
