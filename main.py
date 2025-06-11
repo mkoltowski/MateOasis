@@ -1,7 +1,10 @@
-import tkinter as tk
+from tkinter import Tk
+from ui import create_main_window
 
-root = tk.Tk()
-root.title("MateOasis")
-root.geometry("300x400")
+root = Tk()
+
+create_main_window(root)
+
+root.mainloop()
 
 root.mainloop()
