@@ -1,9 +1,26 @@
-{
-  "devDependencies": {
-    "jest": "^29.3.1",
-    "@types/jest": "^29.2.5"
-  },
-  "scripts": {
-    "test": "jest"
-  }
-}
+[
+    {
+        "start_time": "2025-06-11T19:24:02.483683",
+        "end_time": "2025-06-11T19:24:02.995740",
+        "session_completed": false,
+        "mindfulness_completed": false
+    },
+    {
+        "start_time": "2025-06-11T19:24:02.483683",
+        "end_time": "2025-06-11T19:24:07.812583",
+        "session_completed": false,
+        "mindfulness_completed": false
+    },
+    {
+        "start_time": "2025-06-11T19:24:02.483683",
+        "end_time": "2025-06-11T19:24:09.715030",
+        "session_completed": false,
+        "mindfulness_completed": false
+    },
+    {
+        "start_time": "2025-06-11T19:24:11.674961",
+        "end_time": "2025-06-11T19:24:12.467405",
+        "session_completed": false,
+        "mindfulness_completed": false
+    }
+]
