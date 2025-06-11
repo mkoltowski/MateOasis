@@ -1,12 +1,14 @@
 import tkinter as tk
+from tkinter import messagebox
 
 session_seconds = 0
 timer_running = False
 
+
 def start_session(label, timer_label, root):
     global session_seconds, timer_running
     label.config(text="Sesja w toku...")
-    session_seconds = 1 * 2
+    session_seconds = 25 * 60  # 25 minut
     timer_running = True
     countdown(label, timer_label, root)
 
@@ -22,6 +24,8 @@ def countdown(label, timer_label, root):
         if timer_running:
             label.config(text="Sesja zakończona.")
             timer_label.config(text="00:00")
+            messagebox.showinfo("MateOasis – Przerwa", "Czas na przerwę!\nWstań, oddychaj, rozluźnij się.")
+            show_mindfulness_window(root)
             timer_running = False
 
 def end_session(label, timer_label):
@@ -29,3 +33,36 @@ def end_session(label, timer_label):
     timer_running = False
     label.config(text="Sesja zakończona.")
     timer_label.config(text="--:--")
+    show_mindfulness_window(timer_label.master)
+
+
+def show_mindfulness_window(root):
+    mindfulness = tk.Toplevel(root)
+    mindfulness.title("Ćwiczenie oddechowe")
+    mindfulness.geometry("300x220")
+
+    instruction = tk.Label(mindfulness, text="Oddychaj głęboko przez 1 minutę", font=("Arial", 12), wraplength=250)
+    instruction.pack(pady=10)
+
+    timer_display = tk.Label(mindfulness, text="01:00", font=("Arial", 24))
+    timer_display.pack(pady=10)
+
+    mindfulness_seconds = 60  # lokalna zmienna
+
+    def countdown_mindfulness():
+        nonlocal mindfulness_seconds
+        if mindfulness_seconds > 0:
+            minutes = mindfulness_seconds // 60
+            seconds = mindfulness_seconds % 60
+            timer_display.config(text=f"{minutes:02d}:{seconds:02d}")
+            mindfulness_seconds -= 1
+            mindfulness.after(1000, countdown_mindfulness)
+        else:
+            instruction.config(text="Brawo! Ćwiczenie zakończone.")
+            timer_display.config(text="00:00")
+
+    btn_start = tk.Button(mindfulness, text="Start ćwiczenia", command=countdown_mindfulness)
+    btn_start.pack(pady=5)
+
+    btn_close = tk.Button(mindfulness, text="Zakończ ćwiczenie", command=mindfulness.destroy)
+    btn_close.pack(pady=5)
